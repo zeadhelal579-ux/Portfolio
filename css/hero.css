@@ -1,0 +1,89 @@
+/* ============================================================================
+   File: hero.css
+   Purpose: The hero section (headline, tagline, CTA buttons, photo, meta
+            row) and the small dot-divider under it.
+   Logic:   Pure styling, copied over unchanged. Hero content itself stays as
+            static text directly in index.html (see ARCHITECTURE.md section 4)
+            since it doesn't repeat like a list, so there is no matching
+            js/data/*.js file for this section.
+   ============================================================================ */
+
+.hero {
+    padding: 80px 0 40px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 64px;
+    align-items: center;
+}
+
+    .hero h1 {
+        font-size: clamp(2.4rem,5vw,3.6rem);
+        line-height: 1.15;
+        letter-spacing: -.01em;
+    }
+
+    .hero .tagline {
+        font-size: 1.15rem;
+        color: var(--on-surface-variant);
+        max-width: 520px;
+        margin: 22px 0 34px;
+    }
+
+.hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-photo {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft-lg);
+    aspect-ratio: 3/4;
+    background: linear-gradient(160deg,var(--primary-container),var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .hero-photo .placeholder {
+        font-family: 'Playfair Display', serif;
+        font-size: 5rem;
+        color: var(--secondary-container);
+        font-weight: 700;
+    }
+
+    .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+    }
+
+.hero-meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-family: 'Work Sans', sans-serif;
+    font-size: .85rem;
+    color: var(--on-surface-variant);
+}
+
+    .hero-meta div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+.dot-divider {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    padding: 8px 0 0;
+    opacity: .45;
+    font-size: .9rem;
+    color: var(--secondary);
+}

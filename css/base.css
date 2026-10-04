@@ -1,0 +1,182 @@
+/* ============================================================================
+   File: base.css
+   Purpose: Design tokens (CSS variables), the global reset, and elements that
+            are shared by two or more sections — buttons, the section title
+            pattern, the shared ".card" look, and the empty-state message.
+   Logic:   Nothing in this file is specific to one section. If a rule is only
+            used in one place, it belongs in that section's own CSS file
+            instead (see nav.css, hero.css, about.css, etc.).
+   Load order: this file must be linked FIRST in index.html <head>, before
+            every other stylesheet, since it defines the --variables and
+            base element styles that all the other files build on top of.
+   ============================================================================ */
+
+:root {
+    --primary: #25160e;
+    --primary-container: #3c2a21;
+    --secondary: #7d562d;
+    --secondary-container: #ffca98;
+    --tertiary: #2c1200;
+    --bg: #fbf9f5;
+    --surface-low: #f5f3ef;
+    --surface-lowest: #ffffff;
+    --surface-high: #eae8e4;
+    --on-surface: #1b1c1a;
+    --on-surface-variant: #4f4540;
+    --outline-variant: #d3c3bd;
+    --shadow-soft: 0 10px 30px rgba(60,42,33,.10);
+    --shadow-soft-lg: 0 20px 45px rgba(60,42,33,.14);
+    --radius: 0.5rem;
+    --radius-lg: 1rem;
+    --max: 1180px;
+}
+
+/* Reset + page-wide defaults */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--on-surface);
+    font-family: 'Source Serif 4', serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    margin: 0;
+    color: var(--primary);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Shared layout helpers, used by every section */
+.wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.eyebrow {
+    font-family: 'Work Sans', sans-serif;
+    font-size: .78rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.section-title {
+    font-size: clamp(1.7rem,3vw,2.3rem);
+    margin: .5rem 0 .25rem;
+}
+
+.rule {
+    height: 1px;
+    width: 64px;
+    background: var(--secondary);
+    opacity: .35;
+    margin: 1.1rem 0 2.2rem;
+}
+
+section {
+    padding: 88px 0;
+}
+
+/* Every <section> also carries the .wrap class, and .wrap (0 24px padding) beats
+   the plain "section" rule above on specificity, so sections had no vertical
+   breathing room and ran into each other (e.g. Hobbies touching the Contact box).
+   This restores the vertical spacing without touching the hero. */
+section.wrap:not(.hero) {
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+/* Shared buttons (hero CTA, contact anchor in nav, etc.) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: .92rem;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    transition: all .25s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+    .btn-primary:hover {
+        background: var(--primary-container);
+        transform: translateY(-2px);
+    }
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1.5px solid var(--outline-variant);
+    box-shadow: none;
+}
+
+    .btn-outline:hover {
+        border-color: var(--secondary);
+        background: var(--surface-low);
+    }
+
+/* Shared ".card" look — reused as-is by Skills, Soft Skills, Courses and
+   Achievements, so it lives here once instead of being redefined per file. */
+.card {
+    background: var(--surface-lowest);
+    border-radius: var(--radius-lg);
+    padding: 34px 30px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(211,195,189,.25);
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-soft-lg);
+    }
+
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--on-surface-variant);
+    font-size: .98rem;
+    margin: 0;
+}
+
+/* Shared empty-state message, used by Courses and Achievements when their
+   data arrays are still empty (see js/components/renderCourses.js and
+   renderAchievements.js). */
+.empty-state {
+    color: var(--on-surface-variant);
+    font-style: italic;
+    font-size: .95rem;
+}

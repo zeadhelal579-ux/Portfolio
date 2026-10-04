@@ -1,0 +1,48 @@
+/* ============================================================================
+   File: courses.css
+   Purpose: The new "Courses & Certifications" section (see ARCHITECTURE.md
+            section 6). A 3-column grid of course cards.
+   Logic:   Reuses the shared ".card" look from base.css (same background,
+            shadow, radius, and hover lift as every other card on the site)
+            so this new section blends in with the existing design instead
+            of introducing a new visual style. Only the grid and the parts
+            unique to a course card (meta line, optional image, optional
+            link) are defined here. Cards are filled at runtime by
+            renderCourses() from js/data/courses.js, targeting the empty
+            container "#courses-grid" in index.html.
+   ============================================================================ */
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+}
+
+.course-card .course-meta {
+    font-family: 'Work Sans', sans-serif;
+    font-size: .82rem;
+    color: var(--secondary);
+    margin: 4px 0 12px;
+}
+
+/* Only used when a course entry sets the optional "certificateImage" field */
+.course-card img {
+    border-radius: var(--radius);
+    margin-top: 12px;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+/* Only used when a course entry sets the optional "certificateLink" field */
+.course-card .course-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+    .course-card .course-link:hover {
+        color: var(--primary);
+    }

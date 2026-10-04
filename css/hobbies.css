@@ -1,0 +1,28 @@
+/* ============================================================================
+   File: hobbies.css
+   Purpose: The Hobbies section — the wrapping row of pill-shaped tags.
+   Logic:   Pure styling, copied over unchanged. Pills are filled at runtime
+            by renderHobbies() from js/data/hobbies.js, targeting the empty
+            container "#hobbies-row" in index.html. The section's intro
+            sentence ("When I close the laptop...") stays static in
+            index.html since it is a fixed line, not a repeating list item.
+   ============================================================================ */
+
+.hobbies-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.hobby-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface-lowest);
+    border: 1px solid var(--outline-variant);
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: .92rem;
+    box-shadow: var(--shadow-soft);
+}

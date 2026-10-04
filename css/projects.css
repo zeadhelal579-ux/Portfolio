@@ -1,0 +1,113 @@
+/* ============================================================================
+   File: projects.css
+   Purpose: The Projects section — filter buttons, the project card grid,
+            and the ".hidden" class used by the filter logic.
+   Logic:   Everything up to ".project-card.hidden" is copied over unchanged.
+            The two rules after that (".project-card img" and
+            ".project-links") are new, small additions: js/data/projects.js
+            supports optional "image"/"githubLink"/"liveLink" fields per
+            ARCHITECTURE.md, and none of the current 26 projects use them, so
+            these rules simply sit dormant (nothing changes visually today)
+            until a project entry adds one of those fields.
+   Interaction: filtering is NOT handled here — the actual show/hide logic
+            lives in js/main.js (initProjectFilter), this file only styles
+            the buttons and the resulting hidden state.
+   ============================================================================ */
+
+.filter-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.filter-btn {
+    padding: 9px 20px;
+    border-radius: 999px;
+    border: 1.5px solid var(--outline-variant);
+    background: transparent;
+    color: var(--on-surface-variant);
+    font-size: .85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+    .filter-btn.active, .filter-btn:hover {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+    }
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+}
+
+.project-card {
+    background: var(--surface-lowest);
+    border-radius: var(--radius-lg);
+    padding: 26px 24px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(211,195,189,.25);
+    transition: all .3s ease;
+}
+
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft-lg);
+        border-color: var(--secondary);
+    }
+
+    .project-card .tag {
+        font-family: 'Work Sans', sans-serif;
+        font-size: .7rem;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        font-weight: 600;
+    }
+
+    .project-card h3 {
+        font-size: 1.1rem;
+        margin: 10px 0 8px;
+    }
+
+    .project-card p {
+        color: var(--on-surface-variant);
+        font-size: .92rem;
+        margin: 0;
+    }
+
+    .project-card.hidden {
+        display: none;
+    }
+
+    /* Only used when a project entry sets the optional "image" field */
+    .project-card img {
+        border-radius: var(--radius);
+        margin-top: 12px;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+
+    /* Only used when a project entry sets "githubLink" and/or "liveLink" */
+    .project-card .project-links {
+        display: flex;
+        gap: 14px;
+        margin-top: 12px;
+        font-family: 'Work Sans', sans-serif;
+        font-size: .82rem;
+        font-weight: 600;
+    }
+
+        .project-card .project-links a {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .project-card .project-links a:hover {
+            color: var(--primary);
+        }

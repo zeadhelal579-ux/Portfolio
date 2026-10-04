@@ -1,0 +1,83 @@
+/* ============================================================================
+   File: contact.css
+   Purpose: The Contact section — the dark rounded call-to-action box with
+            its two blurred accent shapes, and the pill-shaped contact links.
+   Logic:   Pure styling, copied over unchanged. The heading and lead
+            paragraph stay static in index.html (fixed marketing copy for
+            this section). The pill links themselves are filled at runtime
+            by renderContactInfo() from js/data/profile.js, targeting the
+            empty container "#contact-links" in index.html.
+   ============================================================================ */
+
+.contact-box {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 1.6rem;
+    padding: 72px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+    .contact-box::before, .contact-box::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: var(--secondary);
+        filter: blur(70px);
+        opacity: .35;
+    }
+
+    .contact-box::before {
+        top: -90px;
+        right: -70px;
+    }
+
+    .contact-box::after {
+        bottom: -100px;
+        left: -80px;
+        background: var(--tertiary);
+    }
+
+    .contact-box > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    .contact-box h2 {
+        color: #fff;
+        font-size: clamp(1.9rem,4vw,2.6rem);
+    }
+
+    .contact-box p.lead {
+        color: var(--secondary-container);
+        max-width: 560px;
+        margin: 16px auto 40px;
+        font-size: 1.05rem;
+    }
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: .9rem;
+    transition: background .2s;
+}
+
+    .contact-pill:hover {
+        background: rgba(255,255,255,.16);
+    }

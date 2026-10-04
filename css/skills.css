@@ -1,0 +1,48 @@
+/* ============================================================================
+   File: skills.css
+   Purpose: The Skills & Tools section — the 2-column grid, the round icon
+            badge on each card, and the chip/tag styling for individual
+            skills.
+   Logic:   The card look itself (background, shadow, hover lift) is shared
+            with Soft Skills/Courses/Achievements, so it lives in base.css
+            (".card") and is not repeated here. Only what's unique to this
+            section is defined below. Card content (chips) is filled at
+            runtime by renderSkills() from js/data/skills.js, targeting the
+            empty container "#skills-grid" in index.html.
+   ============================================================================ */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 28px;
+}
+
+.icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--surface-low);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--secondary);
+    font-size: 1.3rem;
+}
+
+.chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.chip {
+    font-family: 'Work Sans', sans-serif;
+    font-size: .76rem;
+    font-weight: 500;
+    padding: 6px 13px;
+    border-radius: 999px;
+    background: rgba(255,202,152,.28);
+    color: var(--secondary);
+}

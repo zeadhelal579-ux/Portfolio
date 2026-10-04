@@ -1,0 +1,112 @@
+/* ============================================================================
+   File: responsive.css
+   Purpose: Every @media query for the whole site lives in this one file, so
+            breakpoint behaviour is never hunted for across 13 different CSS
+            files.
+   Logic:   The two breakpoints (900px, 640px) and every rule inside them are
+            copied over unchanged from the original stylesheet, with two
+            additions:
+              1. ".courses-grid"/".achievements-grid" were added next to
+                 ".skills-grid"/".soft-grid"/".projects-grid" in both
+                 breakpoints, so the two new sections collapse the same way
+                 the existing grids already do.
+              2. ".nav-links.open" was added inside the 640px breakpoint —
+                 this is the missing piece that makes the mobile menu button
+                 actually work (see js/main.js, initMobileMenu). Previously
+                 the button existed in the HTML/CSS but had no behavior.
+   Load order: this file must be linked LAST in index.html <head>, after
+            every other stylesheet, so these overrides always win the
+            cascade at their breakpoints.
+   ============================================================================ */
+
+@media (max-width:900px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-photo {
+        max-width: 340px;
+        margin: 0 auto;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .soft-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .courses-grid, .achievements-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .soft-wrap {
+        padding: 40px 26px;
+    }
+
+    .contact-box {
+        padding: 56px 26px;
+    }
+}
+
+@media (max-width:640px) {
+    .nav-links {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    /* Mobile dropdown menu: toggled by js/main.js (initMobileMenu), which
+       adds/removes the "open" class on .nav-links when .nav-toggle is
+       clicked. Positioned relative to "nav.wrap" (see nav.css). */
+    .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--outline-variant);
+        padding: 20px 24px 26px;
+        box-shadow: var(--shadow-soft);
+    }
+
+    .skills-grid, .soft-grid, .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .courses-grid, .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 56px 0;
+    }
+
+    section.wrap:not(.hero) {
+        padding-top: 44px;
+        padding-bottom: 44px;
+    }
+
+    .achievement-card--wide {
+        display: block;
+    }
+
+        .achievement-card--wide img {
+            margin-top: 12px;
+        }
+}

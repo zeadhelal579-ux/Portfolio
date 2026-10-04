@@ -1,0 +1,51 @@
+/* ============================================================================
+   File: about.css
+   Purpose: The About section — the two-column text/info-card layout and the
+            info-card row styling (label + value pairs).
+   Logic:   Pure styling, copied over unchanged. The info-card's rows are
+            filled at runtime by renderContactInfo() from js/data/profile.js,
+            targeting the empty container "#about-info-card" in index.html.
+   ============================================================================ */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+}
+
+    .about-grid p {
+        color: var(--on-surface-variant);
+        font-size: 1.05rem;
+    }
+
+.info-card {
+    background: var(--surface-lowest);
+    border-radius: var(--radius-lg);
+    padding: 28px 30px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(211,195,189,.3);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--outline-variant);
+    font-family: 'Work Sans', sans-serif;
+    font-size: .92rem;
+}
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-row span:first-child {
+        color: var(--on-surface-variant);
+    }
+
+    .info-row span:last-child {
+        font-weight: 600;
+        color: var(--primary);
+        text-align: right;
+    }

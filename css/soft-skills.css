@@ -1,0 +1,26 @@
+/* ============================================================================
+   File: soft-skills.css
+   Purpose: The "Beyond the Code" section — the tinted rounded wrapper and
+            the 4-column card grid.
+   Logic:   Reuses the shared ".card" look from base.css; only the wrapper
+            background, the grid, and the slightly tighter card padding for
+            this specific layout are defined here. Cards are filled at
+            runtime by renderSoftSkills() from js/data/softSkills.js,
+            targeting the empty container "#soft-skills-grid" in index.html.
+   ============================================================================ */
+
+.soft-wrap {
+    background: var(--surface-low);
+    border-radius: 1.6rem;
+    padding: 64px;
+}
+
+.soft-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 22px;
+}
+
+    .soft-grid .card {
+        padding: 26px 22px;
+    }

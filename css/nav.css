@@ -1,0 +1,76 @@
+/* ============================================================================
+   File: nav.css
+   Purpose: The sticky header bar — brand, nav links, and the mobile menu
+            toggle button.
+   Logic:   Visual styling only. The nav-toggle button's actual open/close
+            behavior is wired up in js/main.js (initMobileMenu). The one rule
+            added on top of the original design is "position: relative" on
+            nav.wrap, which gives the mobile dropdown (see responsive.css,
+            ".nav-links.open") a positioning anchor — it has no visible effect
+            at desktop width.
+   ============================================================================ */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251,249,245,.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--outline-variant);
+}
+
+nav.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    position: relative; /* anchors the mobile dropdown added in responsive.css */
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--primary);
+}
+
+    .brand span {
+        color: var(--secondary);
+    }
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    font-family: 'Work Sans', sans-serif;
+    font-size: .95rem;
+}
+
+    .nav-links a {
+        color: var(--on-surface-variant);
+        position: relative;
+        padding-bottom: 4px;
+        transition: color .2s;
+    }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+/* The Contact button is an <a class="btn btn-primary"> inside .nav-links. The generic
+   ".nav-links a" rule above is more specific than ".btn-primary" (base.css), so it turned the
+   button's text dark brown on a dark brown background. This restores the intended white text,
+   including on hover. */
+.nav-links a.btn-primary,
+.nav-links a.btn-primary:hover {
+    color: #fff;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    color: var(--primary);
+    cursor: pointer;
+}

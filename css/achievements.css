@@ -1,0 +1,91 @@
+/* ============================================================================
+   File: achievements.css
+   Purpose: The new "Achievements & Awards" section (see ARCHITECTURE.md
+            section 6). A 3-column grid of achievement cards (hackathon
+            wins, competitions, awards).
+   Logic:   Reuses the shared ".card" look from base.css, same reasoning as
+            courses.css — this keeps a brand-new section visually consistent
+            with the rest of the site. Cards are filled at runtime by
+            renderAchievements() from js/data/achievements.js, targeting the
+            empty container "#achievements-grid" in index.html.
+   ============================================================================ */
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+}
+
+.achievement-card {
+    display: flex;
+    flex-direction: column;
+}
+
+    /* Pins the photo to the bottom of the card so photos line up across a row,
+       whatever the title or description length. */
+    .achievement-card img {
+        margin-top: auto;
+    }
+
+    .achievement-card p:not(.achievement-date) {
+        margin-bottom: 14px;
+    }
+
+.achievement-card .achievement-date {
+    font-family: 'Work Sans', sans-serif;
+    font-size: .82rem;
+    color: var(--secondary);
+    font-weight: 600;
+    margin: 4px 0 12px;
+}
+
+/* Only used when an achievement entry sets the optional "image" field */
+.achievement-card img {
+    border-radius: var(--radius);
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+/* A card flagged "wide: true" in achievements.js spans the whole row, with the text
+   on one side and the photo on the other. Used for the last card so it doesn't
+   sit alone under a 3-column grid. */
+.achievement-card--wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+    align-items: center;
+}
+
+    .achievement-card--wide h3 {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: end;
+    }
+
+    .achievement-card--wide p {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: start;
+    }
+
+    .achievement-card--wide img {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        margin-top: 0;
+    }
+
+/* Only used when an achievement entry sets the optional "link" field */
+.achievement-card .achievement-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+    .achievement-card .achievement-link:hover {
+        color: var(--primary);
+    }

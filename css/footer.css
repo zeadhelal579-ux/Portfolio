@@ -1,0 +1,41 @@
+/* ============================================================================
+   File: footer.css
+   Purpose: The site footer — the brand/copyright block on the left and the
+            link row on the right.
+   Logic:   Pure styling, copied over unchanged. The brand name and copyright
+            line stay static in index.html. The link row itself is filled at
+            runtime by renderContactInfo() from js/data/profile.js,
+            targeting the empty container "#footer-links" in index.html.
+   ============================================================================ */
+
+footer {
+    border-top: 1px solid var(--outline-variant);
+    padding: 32px 0;
+    background: var(--surface-low);
+}
+
+    footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    footer .foot-links {
+        display: flex;
+        gap: 24px;
+        font-family: 'Work Sans', sans-serif;
+        font-size: .82rem;
+        color: var(--on-surface-variant);
+    }
+
+        footer .foot-links a:hover {
+            color: var(--primary);
+        }
+
+.foot-copy {
+    font-family: 'Work Sans', sans-serif;
+    font-size: .78rem;
+    color: var(--secondary);
+}

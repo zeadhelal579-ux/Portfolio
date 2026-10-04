@@ -1,0 +1,222 @@
+<!--
+=====================================================================
+File: index.html
+Purpose: Page structure only. Header, Hero, and About's paragraph text
+         are static (they don't repeat like a list, see ARCHITECTURE.md
+         section 4). Every other section is an empty container with an
+         id, filled at runtime by the matching function in
+         js/components/, using the data in js/data/.
+Note:    Loaded as plain <script> tags (no type="module"), on purpose —
+         this keeps the site openable by double-clicking index.html
+         with no local server required, which module scripts do not
+         reliably allow due to browser CORS rules on file:// pages.
+=====================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zead Helal — Computer Science Student & Full-Stack Developer</title>
+    <meta name="description" content="Portfolio of Zead Helal, a Computer Science student at Suez University and full-stack developer working across frontend, backend, networking, and embedded hardware.">
+
+    <!-- Open Graph tags so shared links (WhatsApp, LinkedIn, etc.) show a proper preview card -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zead Helal — Computer Science Student & Full-Stack Developer">
+    <meta property="og:description" content="Portfolio of Zead Helal, a Computer Science student at Suez University and full-stack developer working across frontend, backend, networking, and embedded hardware.">
+    <meta property="og:image" content="assets/images/profile/zead-photo.jpeg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- One <link> per section, in document order. base.css first (tokens/reset),
+         responsive.css last (so its @media overrides always win the cascade). -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/skills.css">
+    <link rel="stylesheet" href="css/soft-skills.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/courses.css">
+    <link rel="stylesheet" href="css/achievements.css">
+    <link rel="stylesheet" href="css/hobbies.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <header>
+        <nav class="wrap">
+            <a href="#" class="brand">Zead <span>Helal</span></a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#courses">Courses</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#hobbies">Hobbies</a>
+                <a href="#contact" class="btn btn-primary" style="padding:10px 22px;">Contact</a>
+            </div>
+            <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO (static — see file header note above) -->
+        <section class="hero wrap">
+            <div>
+                <p class="eyebrow">Computer Science Student · Suez University</p>
+                <h1>Building software, from the browser down to the breadboard.</h1>
+                <p class="tagline">I'm Zead Helal — a full-stack developer who also wires up hardware. I move comfortably between frontend interfaces, backend systems, and embedded electronics, and I care about writing clean, working code more than writing a lot of it.</p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+                <div class="hero-meta">
+                    <div>📍 Faqous, Sharqia, Egypt</div>
+                    <div>🎓 Faculty of Computers and Information, Suez University</div>
+                </div>
+            </div>
+            <div class="hero-photo">
+                <img src="assets/images/profile/zead-photo.jpeg" alt="Zead Helal">
+            </div>
+        </section>
+
+        <div class="dot-divider">● ● ●</div>
+
+        <!-- ABOUT (paragraph text is static; info-card is filled by renderContactInfo()) -->
+        <section id="about" class="wrap">
+            <p class="eyebrow">About</p>
+            <h2 class="section-title">Who I am</h2>
+            <div class="rule"></div>
+            <div class="about-grid">
+                <div>
+                    <p>I'm a second-year Computer Science student at the Faculty of Computers and Information, Suez University, and a coach and organizer at Anomaly Community, where I lead structured technical training for members learning web development.</p>
+                    <p>My work spans four areas: frontend interfaces, backend systems, networking, and hardware/embedded projects — I like understanding a system end to end, not just one layer of it. I've finished learning React, I'm now learning Next.js, and I'm working on full-stack projects.</p>
+                    <p>I take part in hackathons and competitions, and I'm passionate about technology, especially web development and AI.</p>
+                </div>
+                <div class="info-card" id="about-info-card">
+                    <!-- Filled by renderContactInfo() -> renderAboutInfoCard() in js/components/renderContactInfo.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS (filled by renderSkills()) -->
+        <section id="skills" class="wrap">
+            <p class="eyebrow">Technical Craft</p>
+            <h2 class="section-title">Skills & Tools</h2>
+            <div class="rule"></div>
+            <div class="skills-grid" id="skills-grid">
+                <!-- Filled by renderSkills() in js/components/renderSkills.js -->
+            </div>
+        </section>
+
+        <!-- SOFT SKILLS (filled by renderSoftSkills()) -->
+        <section class="wrap">
+            <div class="soft-wrap">
+                <p class="eyebrow">Human Elements</p>
+                <h2 class="section-title">Beyond the Code</h2>
+                <div class="rule"></div>
+                <div class="soft-grid" id="soft-skills-grid">
+                    <!-- Filled by renderSoftSkills() in js/components/renderSoftSkills.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS (filter row + cards filled by renderProjects(); filtering behavior wired in main.js) -->
+        <section id="projects" class="wrap">
+            <p class="eyebrow">Selected Work</p>
+            <h2 class="section-title">Projects</h2>
+            <div class="rule"></div>
+
+            <div class="filter-row" id="projects-filter">
+                <!-- Filled by renderProjects() -> renderProjectFilters() in js/components/renderProjects.js -->
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+                <!-- Filled by renderProjects() -> renderProjectCards() in js/components/renderProjects.js -->
+            </div>
+        </section>
+
+        <!-- COURSES & CERTIFICATIONS (new section — filled by renderCourses()) -->
+        <section id="courses" class="wrap">
+            <p class="eyebrow">Learning</p>
+            <h2 class="section-title">Courses & Certifications</h2>
+            <div class="rule"></div>
+            <div class="courses-grid" id="courses-grid">
+                <!-- Filled by renderCourses() in js/components/renderCourses.js -->
+            </div>
+        </section>
+
+        <!-- ACHIEVEMENTS & AWARDS (new section — filled by renderAchievements()) -->
+        <section id="achievements" class="wrap">
+            <p class="eyebrow">Recognition</p>
+            <h2 class="section-title">Achievements & Awards</h2>
+            <div class="rule"></div>
+            <div class="achievements-grid" id="achievements-grid">
+                <!-- Filled by renderAchievements() in js/components/renderAchievements.js -->
+            </div>
+        </section>
+
+        <!-- HOBBIES (intro line is static; pills filled by renderHobbies()) -->
+        <section id="hobbies" class="wrap">
+            <p class="eyebrow">Off-Screen</p>
+            <h2 class="section-title">Outside the Code</h2>
+            <div class="rule"></div>
+            <p style="color:var(--on-surface-variant); max-width:600px; margin-bottom:28px;">When I close the laptop, here's where my time goes.</p>
+            <div class="hobbies-row" id="hobbies-row">
+                <!-- Filled by renderHobbies() in js/components/renderHobbies.js -->
+            </div>
+        </section>
+
+        <!-- CONTACT (heading/lead text is static; pill links filled by renderContactInfo()) -->
+        <section id="contact" class="wrap">
+            <div class="contact-box">
+                <h2>Let's build something.</h2>
+                <p class="lead">Whether it's a full-stack project, a hardware idea, or a training collaboration — I'd love to hear from you.</p>
+                <div class="contact-links" id="contact-links">
+                    <!-- Filled by renderContactInfo() -> renderContactLinks() in js/components/renderContactInfo.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div>
+                <div class="brand" style="font-size:1.05rem;">Zead <span>Helal</span></div>
+                <div class="foot-copy">© 2026 Zead Helal. Built with care, one component at a time.</div>
+            </div>
+            <div class="foot-links" id="footer-links">
+                <!-- Filled by renderContactInfo() -> renderFooterLinks() in js/components/renderContactInfo.js -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Data files first: plain content, no logic (order among these doesn't
+         matter, but they must all load before main.js runs its render calls). -->
+    <script src="js/data/profile.js"></script>
+    <script src="js/data/skills.js"></script>
+    <script src="js/data/softSkills.js"></script>
+    <script src="js/data/projects.js"></script>
+    <script src="js/data/courses.js"></script>
+    <script src="js/data/achievements.js"></script>
+    <script src="js/data/hobbies.js"></script>
+
+    <!-- Component files second: one render function per section. -->
+    <script src="js/components/renderContactInfo.js"></script>
+    <script src="js/components/renderSkills.js"></script>
+    <script src="js/components/renderSoftSkills.js"></script>
+    <script src="js/components/renderProjects.js"></script>
+    <script src="js/components/renderCourses.js"></script>
+    <script src="js/components/renderAchievements.js"></script>
+    <script src="js/components/renderHobbies.js"></script>
+
+    <!-- main.js last: calls every render function and wires up page-wide behavior. -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
